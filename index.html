@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte Diario de Avance</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- =========== NAVEGACIÓN DE PESTAÑAS =========== -->
+        <nav class="tabs">
+            <button id="tab-form" class="tab-btn active">Crear Reporte</button>
+            <button id="tab-history" class="tab-btn">Ver Registros</button>
+        </nav>
+
+        <!-- =========== VISTA DEL FORMULARIO =========== -->
+        <div id="form-view">
+            <header class="main-header">
+                <div class="form-section">
+                    <h1>Reporte de Actividades</h1>
+                    <form id="reporteForm">
+                        <fieldset class="header-fieldset">
+                            <div class="form-grid-header">
+                                <div>
+                                    <label for="fecha">Fecha del Reporte:</label>
+                                    <input type="date" id="fecha" name="fecha" required>
+                                </div>
+                                <div>
+                                    <label for="turno">Turno:</label>
+                                    <select id="turno" name="turno" required>
+                                        <option value="">Seleccione...</option>
+                                        <option value="Dia">Día</option>
+                                        <option value="Noche">Noche</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="supervisor">Nombre del Supervisor:</label>
+                                    <select id="supervisor" name="supervisor" required>
+                                        <option value="">Seleccione...</option>
+                                        <option value="Alpaca Martin">Alpaca Martin</option>
+                                        <option value="Escalante Jesús">Escalante Jesús</option>
+                                        <option value="Febres Jesús">Febres Jesús</option>
+                                        <option value="Quispe Gabith">Quispe Gabith</option>
+                                        <option value="Otro">Otro (especificar)</option>
+                                    </select>
+                                    <input type="text" id="supervisorOtro" name="supervisorOtro" class="hidden" placeholder="Ingrese su nombre">
+                                </div>
+                                <div>
+                                    <label for="ubicacion">Ubicación General:</label>
+                                    <select id="ubicacion" name="ubicacion" required>
+                                        <option value="">Seleccione...</option>
+                                        <option value="By pass Zona Alta">By pass Zona Alta</option>
+                                        <option value="By pass Zona Baja">By pass Zona Baja</option>
+                                        <option value="Valle Principal">Valle Principal</option>
+                                        <option value="Valle Secundario">Valle Secundario</option>
+                                        <option value="Cut of Trench">Cut of Trench</option>
+                                        <option value="Otro">Otro (especificar)</option>
+                                    </select>
+                                    <input type="text" id="ubicacionOtro" name="ubicacionOtro" class="hidden" placeholder="Ingrese la ubicación">
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </header>
+            
+            <main>
+                <fieldset>
+                    <legend>Descripción de Actividades Realizadas</legend>
+                    <div class="form-row">
+                        <label for="tipoActividadPrincipal">Tipo de Actividad:</label>
+                        <select id="tipoActividadPrincipal">
+                            <option value="">Seleccione una opción para agregar...</option>
+                            <option value="limpieza_excavacion">Limpieza profunda de excavacion</option>
+                            <option value="soporte_compactacion">Soporte a MBE de compactacion de contactos</option>
+                            <option value="relleno_filete">Colocacion y relleno compactado - Filete</option>
+                            <option value="relleno_area">Colocacion y relleno compactado - Area</option>
+                        </select>
+                    </div>
+                    <div id="dynamic-forms-container"></div>
+                </fieldset>
+                
+                <fieldset>
+                    <legend>Personal Civil</legend>
+                     <div class="form-row">
+                        <label for="personal_total">Cantidad Total de Personal Civil en el Turno:</label>
+                        <input type="number" id="personal_total" name="personal_total" placeholder="0" required>
+                    </div>
+                </fieldset>
+
+                <button type="submit" form="reporteForm" class="submit-btn">Enviar Reporte Completo</button>
+            </main>
+        </div>
+
+        <!-- =========== VISTA DE REGISTROS (HISTORIAL) =========== -->
+        <div id="history-view" class="hidden">
+            <header class="main-header">
+                <div class="form-section">
+                    <h1>Historial de Registros</h1>
+                </div>
+            </header>
+            <main>
+                <div class="search-bar-container">
+                    <input type="text" id="history-search-input" placeholder="Buscar por fecha, supervisor, ubicación, etc...">
+                </div>
+                <div id="history-container"></div>
+                <button id="clear-history-btn" class="clear-btn">Borrar Todos los Registros</button>
+            </main>
+        </div>
+    </div>
+
+    <!-- =========== TEMPLATES PARA EL FORMULARIO =========== -->
+    <template id="template-limpieza-excavacion">
+        <div class="data-row">
+            <div class="mobile-field" data-label="Área">
+                <input type="text" name="area" placeholder="Indicar en MAYÚSCULAS" required>
+            </div>
+            <div class="input-with-unit" data-label="Avance">
+                <input type="number" step="0.01" name="avance" placeholder="0.00" required>
+                <span>m²</span>
+            </div>
+            <button type="button" class="remove-row-btn" title="Eliminar fila">X</button>
+        </div>
+    </template>
+
+    <template id="template-soporte-compactacion">
+        <div class="data-row">
+            <div class="material-field-group" data-label="Material">
+                <select name="material" class="material-select" required>
+                    <option value="">Seleccione...</option>
+                    <option value="Zona 2B">Zona 2B</option>
+                    <option value="Zona 3">Zona 3</option>
+                    <option value="Zona 5">Zona 5</option>
+                    <option value="Zona 6">Zona 6</option>
+                    <option value="Zona 6A">Zona 6A</option>
+                    <option value="Zona 7">Zona 7</option>
+                    <option value="Otro">Otro</option>
+                </select>
+                <input type="text" name="material_otro" class="hidden" placeholder="Especifique material">
+            </div>
+            <div class="input-with-unit" data-label="Avance">
+                <input type="number" step="0.01" name="avance" placeholder="0.00" required>
+                <span>m²</span>
+            </div>
+            <button type="button" class="remove-row-btn" title="Eliminar fila">X</button>
+        </div>
+    </template>
+    
+    <template id="template-relleno-filete">
+        <div class="data-row">
+            <div class="mobile-field" data-label="# Filete">
+                <input type="number" name="filete" placeholder="0" required>
+            </div>
+            <div class="mobile-field" data-label="Capa">
+                <input type="number" name="capa" placeholder="0" required>
+            </div>
+            <div class="material-field-group" data-label="Material">
+                <select name="material" class="material-select" required>
+                    <option value="">Seleccione...</option>
+                    <option value="Zona 2B">Zona 2B</option>
+                    <option value="Zona 3">Zona 3</option>
+                    <option value="Zona 5">Zona 5</option>
+                    <option value="Zona 6">Zona 6</option>
+                    <option value="Zona 6A">Zona 6A</option>
+                    <option value="Zona 7">Zona 7</option>
+                    <option value="Otro">Otro</option>
+                </select>
+                <input type="text" name="material_otro" class="hidden" placeholder="Especifique material">
+            </div>
+            <div class="input-with-unit" data-label="Avance">
+                <input type="number" step="0.01" name="avance" placeholder="0.00" required>
+                <span>m³</span>
+            </div>
+            <button type="button" class="remove-row-btn" title="Eliminar fila">X</button>
+        </div>
+    </template>
+    
+    <template id="template-relleno-area">
+        <div class="data-row">
+            <div class="mobile-field" data-label="Área">
+                <input type="text" name="area" placeholder="Indicar en MAYÚSCULAS" required>
+            </div>
+            <div class="mobile-field" data-label="Capa">
+                <input type="number" name="capa" placeholder="0" required>
+            </div>
+            <div class="material-field-group" data-label="Material">
+                <select name="material" class="material-select" required>
+                    <option value="">Seleccione...</option>
+                    <option value="Zona 2B">Zona 2B</option>
+                    <option value="Zona 3">Zona 3</option>
+                    <option value="Zona 5">Zona 5</option>
+                    <option value="Zona 6">Zona 6</option>
+                    <option value="Zona 6A">Zona 6A</option>
+                    <option value="Zona 7">Zona 7</option>
+                    <option value="Otro">Otro</option>
+                </select>
+                <input type="text" name="material_otro" class="hidden" placeholder="Especifique material">
+            </div>
+            <div class="input-with-unit" data-label="Avance">
+                <input type="number" step="0.01" name="avance" placeholder="0.00" required>
+                <span>m³</span>
+            </div>
+            <button type="button" class="remove-row-btn" title="Eliminar fila">X</button>
+        </div>
+    </template>
+    
+    <script src="script.js"></script>
+</body>
+</html>
