@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "ms-project-live": {
+      "command": "python",
+      "args": ["C:\\Users\\HP\\Documents\\GitHub\\MCP-Ms-Project\\ms-project-live\\server.py"],
+      "env": {
+        "MSP_HORAS_POR_DIA": "8",
+        "MSP_VISIBLE": "1"
+      }
+    }
+  }
+}

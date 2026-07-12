@@ -1,0 +1,9 @@
+# Servidor MCP de control en vivo de Microsoft Project
+fastmcp>=2.0.0
+pydantic>=2.7.0
+
+# SOLO en Windows (control real de MS Project vía COM):
+pywin32>=306 ; sys_platform == "win32"
+
+# Desarrollo / pruebas (cualquier SO):
+pytest>=8.0.0
