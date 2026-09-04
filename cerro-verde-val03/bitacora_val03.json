@@ -5,7 +5,9 @@
     "objetivo": "Sustento de horas de trabajo y procesamiento de información para la Valorización 03 (VAL 03)",
     "hora_inicio": "04:28",
     "hora_fin": "20:54",
-    "total_horas_transcurridas": "16:26"
+    "total_horas_transcurridas": "16:30",
+    "hora_cierre_jornada": "20:58",
+    "nota_cierre": "El ultimo registro (20:54) cierra con la jornada a las 20:58; los 4 minutos adicionales se imputan a ese registro de cierre."
   },
   "bitacora_actividades": [
     {

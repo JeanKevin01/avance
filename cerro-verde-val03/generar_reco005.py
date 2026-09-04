@@ -126,17 +126,24 @@ def to_hhmm(minutes):
     return "%d:%02d" % (minutes // 60, minutes % 60)
 
 
-def calcular_duraciones(actividades):
+def calcular_duraciones(actividades, hora_cierre=None):
     """Duracion imputada a cada registro.
 
     La bitacora registra la hora de *culminacion* de cada actividad ("Culminacion
     de...", "Finalizacion de..."), por lo que a cada registro le corresponde el
     tiempo transcurrido desde el registro anterior. El primer registro es la
     marca de inicio de jornada y no consume tiempo.
+
+    `hora_cierre` permite cerrar la jornada despues de la hora del ultimo
+    registro: ese tiempo adicional se imputa al ultimo registro, que es el que
+    corresponde al cierre de la jornada. Los sellos de tiempo de la bitacora no
+    se alteran.
     """
     duraciones = [0]
     for prev, act in zip(actividades, actividades[1:]):
         duraciones.append(to_min(act["hora"]) - to_min(prev["hora"]))
+    if hora_cierre:
+        duraciones[-1] = to_min(hora_cierre) - to_min(actividades[-2]["hora"])
     return duraciones
 
 
@@ -146,7 +153,8 @@ def calcular_duraciones(actividades):
 def build(data, salida):
     info = data["informacion_general"]
     acts = data["bitacora_actividades"]
-    dur = calcular_duraciones(acts)
+    dur = calcular_duraciones(acts, info.get("hora_cierre_jornada"))
+    fin = info.get("hora_cierre_jornada", info["hora_fin"])
     total = sum(dur)
 
     c = canvas.Canvas(salida, pagesize=(PAGE_W, PAGE_H))
@@ -219,7 +227,7 @@ def build(data, salida):
         ("PROYECTO CERRO VERDE \xb7 %s \xb7 VALORIZACI\xd3N 03 (VAL 03). "
          % info["contratista"].upper(), F_BLD, fs),
         ("Objetivo: %s. Jornada: %s a %s." % (
-            info["objetivo"], info["hora_inicio"], info["hora_fin"]), F_REG, fs),
+            info["objetivo"], info["hora_inicio"], fin), F_REG, fs),
     ], desc_w)
 
     sub = []       # (texto_hrs, lineas_descripcion)

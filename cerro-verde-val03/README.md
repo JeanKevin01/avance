@@ -38,14 +38,17 @@ de…", "Finalización de…"), por lo que a cada registro se le imputa el tiemp
 transcurrido desde el registro anterior. El primer registro (04:28) es la marca de
 inicio de jornada y no consume tiempo; se muestra como `inicio` en la columna `Hrs`.
 
-La suma de las duraciones imputadas cuadra exactamente con el total declarado en
-la bitácora:
+La jornada cierra a las **20:58**, cuatro minutos después del último registro de la
+bitácora (20:54). Ese tiempo de cierre se imputa al último registro, que es
+justamente el de cierre de jornada; los sellos de tiempo de la bitácora no se
+alteran. El campo que lo controla es `hora_cierre_jornada` en
+`informacion_general`.
 
 ```
-04:28 (inicio) … 20:54 (cierre)  →  16:26 h
+04:28 (inicio) … 20:54 (último registro) … 20:58 (cierre)  →  16:30 h
 ```
 
-`HR. LABORADAS` = **16:26**, y la última subfila repite el total como control.
+`HR. LABORADAS` = **16:30**, y la última subfila repite el total como control.
 
 ## Contenido de cada actividad
 
