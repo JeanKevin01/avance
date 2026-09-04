@@ -230,25 +230,26 @@ def build(data, salida):
             info["objetivo"], info["hora_inicio"], fin), F_REG, fs),
     ], desc_w)
 
-    sub = []       # (texto_hrs, lineas_descripcion)
-    sub.append(("", intro))
-    for act, d in zip(acts, dur):
+    # La columna Hrs consigna la hora de cada registro de la bitacora; la ultima
+    # subfila cierra con el total de horas de la jornada.
+    sub = [("", intro, False)]     # (texto_hrs, lineas_descripcion, es_total)
+    for act in acts:
         # Evita parentesis anidados en la cita del medio de sustento.
         ref = act["referencia_visual"]
         if ref.endswith(")") and " (" in ref:
             ref = ref.replace(" (", ", ").rstrip(")")
         runs = [
-            ("%s \xb7 %s:" % (act["hora"], act["actividad"]), F_BLD, fs),
+            ("%s:" % act["actividad"], F_BLD, fs),
             (" " + act["descripcion"], F_REG, fs),
             (" (Sustento: %s)" % ref, F_ITA, fs),
         ]
-        sub.append((to_hhmm(d) if d else "inicio", wrap_runs(c, runs, desc_w)))
-    sub.append(("%s" % to_hhmm(total),
+        sub.append((act["hora"], wrap_runs(c, runs, desc_w), False))
+    sub.append((to_hhmm(total),
                 wrap_runs(c, [("TOTAL DE HORAS REGISTRADAS EN LA JORNADA",
-                               F_BLD, fs)], desc_w)))
+                               F_BLD, fs)], desc_w), True))
 
     pad = 2.6
-    heights = [max(11.28, len(ln) * lead + pad) for _, ln in sub]
+    heights = [max(11.28, len(ln) * lead + pad) for _, ln, _ in sub]
     row1_h = sum(heights)
 
     disponible = BODY_TOP - BODY_BOTTOM
@@ -268,16 +269,14 @@ def build(data, salida):
                  [to_hhmm(total)], F_BLD, 7.5, 8.6)
 
     y = y_top
-    for (hrs, lines), h in zip(sub, heights):
+    for (hrs, lines, es_total), h in zip(sub, heights):
         y_next = y - h
-        if hrs == to_hhmm(total) and lines is sub[-1][1]:
+        if es_total:
             c.setFillColor(SHADE)
             c.rect(X_HRLAB, y_next, X_DESC - X_HRLAB, h, stroke=0, fill=1)
             c.setFillColor(black)
         if hrs:
-            centered(c, X_HRLAB, X_HRS, (y + y_next) / 2.0 - 2.2, hrs,
-                     F_BLD if hrs != "inicio" else F_ITA,
-                     6.5 if hrs != "inicio" else 5.8)
+            centered(c, X_HRLAB, X_HRS, (y + y_next) / 2.0 - 2.2, hrs, F_BLD, 6.5)
         ty = (y + y_next) / 2.0 + (len(lines) * lead) / 2.0 - lead + 1.6
         for ln in lines:
             draw_runs(c, X_HRS + 3.0, ty, ln)

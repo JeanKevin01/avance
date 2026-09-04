@@ -31,12 +31,14 @@ documento generado es visualmente idéntico al vigente y solo cambia el contenid
 - Las filas no utilizadas (2 y 3) se conservan en blanco con sus renglones
   internos, para seguir usando el registro en jornadas posteriores.
 
-## Criterio de imputación de horas
+## Columna `Hrs` y cómputo de la jornada
 
-La bitácora registra la hora de **culminación** de cada actividad ("Culminación
-de…", "Finalización de…"), por lo que a cada registro se le imputa el tiempo
-transcurrido desde el registro anterior. El primer registro (04:28) es la marca de
-inicio de jornada y no consume tiempo; se muestra como `inicio` en la columna `Hrs`.
+La columna `Hrs` consigna la **hora de cada registro** de la bitácora (04:28,
+04:48, 05:44 … 20:54), y la última subfila cierra con el total de la jornada.
+
+La bitácora anota la hora de **culminación** de cada actividad ("Culminación
+de…", "Finalización de…"); el primer registro (04:28) es la marca de inicio de
+jornada.
 
 La jornada cierra a las **20:58**, cuatro minutos después del último registro de la
 bitácora (20:54). Ese tiempo de cierre se imputa al último registro, que es
@@ -55,8 +57,10 @@ alteran. El campo que lo controla es `hora_cierre_jornada` en
 Cada subfila de `Descripción` se compone de:
 
 ```
-HH:MM · Nombre de la actividad:  descripción.  (Sustento: medio de verificación)
+Nombre de la actividad:  descripción.  (Sustento: medio de verificación)
 ```
+
+La hora no se repite aquí: va en la columna `Hrs` de la misma subfila.
 
 El medio de verificación proviene del campo `referencia_visual` de la bitácora y
 se cita en cursiva, de modo que el registro queda trazable contra las evidencias
