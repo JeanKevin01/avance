@@ -9,6 +9,13 @@
     "hora_cierre_jornada": "20:58",
     "nota_cierre": "El ultimo registro (20:54) cierra con la jornada a las 20:58; los 4 minutos adicionales se imputan a ese registro de cierre."
   },
+  "datos_registro": {
+    "mes": "Septiembre",
+    "fecha": "03/09/2026",
+    "colaborador": "Chuquitarqui Cruz Jean Kevin",
+    "dni": "76602307",
+    "gerencia_responsable": ""
+  },
   "bitacora_actividades": [
     {
       "hora": "04:28",

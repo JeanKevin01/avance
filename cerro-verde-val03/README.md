@@ -66,12 +66,21 @@ El medio de verificación proviene del campo `referencia_visual` de la bitácora
 se cita en cursiva, de modo que el registro queda trazable contra las evidencias
 (capturas de Excel, fotos de partes diarios, planos amarillados, etc.).
 
+## Datos del registro
+
+El bloque `datos_registro` de `bitacora_val03.json` alimenta la cabecera del
+formato:
+
+| Campo del formato | Valor |
+|---|---|
+| `MES` | Septiembre |
+| `FECHA` (fila 1) | 03/09/2026 |
+| `APELLIDOS Y NOMBRES COLABORADOR` | Chuquitarqui Cruz Jean Kevin |
+| `DNI` | 76602307 |
+
 ## Campos pendientes de llenado
 
-Estos datos no figuran en la bitácora y se dejaron en blanco para su completado
-manual antes de la firma:
+Se dejaron en blanco para su completado manual antes de la firma:
 
-- `MES` y `FECHA` de la jornada.
-- `APELLIDOS Y NOMBRES COLABORADOR` y `DNI`.
 - `GERENCIA RESPONSABLE - Apellidos y Nombres`.
 - `FIRMA COLABORADOR`, `VºBº GERENCIA` y `OBSERVACIONES GERENCIA RESPONSABLE`.

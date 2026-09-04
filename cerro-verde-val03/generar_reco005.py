@@ -152,6 +152,7 @@ def calcular_duraciones(actividades, hora_cierre=None):
 # --------------------------------------------------------------------------- #
 def build(data, salida):
     info = data["informacion_general"]
+    datos = data.get("datos_registro", {})
     acts = data["bitacora_actividades"]
     dur = calcular_duraciones(acts, info.get("hora_cierre_jornada"))
     fin = info.get("hora_cierre_jornada", info["hora_fin"])
@@ -190,10 +191,15 @@ def build(data, salida):
     c.setFont(F_BI, 7)
     c.drawString(INFO_DNI_X, rows_y[1] - 8.5, "DNI:")
 
-    # Valores conocidos por la bitacora. Los datos personales del colaborador y
-    # el mes/fecha no forman parte de la bitacora y quedan para su llenado.
+    # Valores del registro. Los campos sin dato quedan en blanco para su
+    # llenado manual antes de la firma.
     c.setFont(F_REG, 7)
-    c.drawString(INFO_SPLIT + 4, rows_y[0] - 8.5, "")
+    c.drawString(INFO_SPLIT + 4, rows_y[0] - 8.5, datos.get("mes", ""))
+    c.drawString(INFO_SPLIT + 4, rows_y[1] - 8.5, datos.get("colaborador", ""))
+    c.drawString(INFO_DNI_X + c.stringWidth("DNI:", F_BI, 7) + 4,
+                 rows_y[1] - 8.5, datos.get("dni", ""))
+    c.drawString(INFO_SPLIT + 4, rows_y[2] - 8.5,
+                 datos.get("gerencia_responsable", ""))
 
     # ---- Cabecera de la tabla ----
     for y in (HEAD_TOP, HEAD_BOTTOM):
@@ -264,7 +270,8 @@ def build(data, salida):
     y_bot = y_top - row1_h
 
     centered(c, X_L, X_NUM, (y_top + y_bot) / 2.0 - 2.2, "1", F_ITA, 7)
-    center_block(c, X_NUM, X_FECHA, y_top, y_bot, [""], F_REG, 7, 8.0)
+    center_block(c, X_NUM, X_FECHA, y_top, y_bot,
+                 [datos.get("fecha", "")], F_REG, 6.5, 8.0)
     center_block(c, X_FECHA, X_HRLAB, y_top, y_bot,
                  [to_hhmm(total)], F_BLD, 7.5, 8.6)
 
