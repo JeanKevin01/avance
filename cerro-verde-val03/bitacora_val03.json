@@ -1,0 +1,114 @@
+{
+  "informacion_general": {
+    "proyecto": "Cerro Verde",
+    "contratista": "Kämpfer",
+    "objetivo": "Sustento de horas de trabajo y procesamiento de información para la Valorización 03 (VAL 03)",
+    "hora_inicio": "04:28",
+    "hora_fin": "20:54",
+    "total_horas_transcurridas": "16:26"
+  },
+  "bitacora_actividades": [
+    {
+      "hora": "04:28",
+      "actividad": "Inicio de actividades",
+      "descripcion": "Apertura del entorno de trabajo e inicio de la jornada laboral.",
+      "referencia_visual": "Foto de laptop"
+    },
+    {
+      "hora": "04:48",
+      "actividad": "Consolidación de exámenes médicos y cursos",
+      "descripcion": "Consolidación de exámenes médicos y cursos del personal en la nueva plantilla de valorización.",
+      "referencia_visual": "Captura de Excel"
+    },
+    {
+      "hora": "05:44",
+      "actividad": "Metrado de guardas y procesamiento",
+      "descripcion": "Metrado de guardas Tramo 2 y procesamiento de datos para valorización.",
+      "referencia_visual": "Captura de Excel (Mesa Electrónica)"
+    },
+    {
+      "hora": "06:56",
+      "actividad": "Procesamiento de partes",
+      "descripcion": "Culminación del procesamiento digital de partes de trabajo.",
+      "referencia_visual": "Captura de interfaz oscura"
+    },
+    {
+      "hora": "06:57",
+      "actividad": "Culminación de metrados de guardas",
+      "descripcion": "Culminación de metrados de guardas tramos 1, 2, 3 y Visio Rock para VAL 03. En espera de metrado detallado del Cajón Colector y Chute Magneto.",
+      "referencia_visual": "Captura de lista de archivos y mensaje"
+    },
+    {
+      "hora": "09:53",
+      "actividad": "Amarillado de planos",
+      "descripcion": "Finalización del amarillado (control/resaltado) de planos de guardas de tramos 1, 2, 3 y Visio Rock.",
+      "referencia_visual": "Plano marcado en digital"
+    },
+    {
+      "hora": "12:06",
+      "actividad": "Numeración digital de partes",
+      "descripcion": "Asignación e inserción de numeración digital a los partes de trabajo según requerimiento del cliente.",
+      "referencia_visual": "Reporte de Actividades (PDF)"
+    },
+    {
+      "hora": "12:09",
+      "actividad": "Master de partes diarios",
+      "descripcion": "Elaboración del máster de partes diarios incluyendo las valorizaciones VAL 01 y VAL 02 presentadas.",
+      "referencia_visual": "Captura de Excel"
+    },
+    {
+      "hora": "12:49",
+      "actividad": "Codificación manual de partes",
+      "descripcion": "Registro de códigos escritos manualmente en los 87 partes diarios para la VAL 03.",
+      "referencia_visual": "Foto de parte diario físico"
+    },
+    {
+      "hora": "14:53",
+      "actividad": "Formato de valorización",
+      "descripcion": "Procesamiento de partes diarios dentro del formato de la valorización.",
+      "referencia_visual": "Captura de Excel (Página 1)"
+    },
+    {
+      "hora": "16:05",
+      "actividad": "Finalización de partes en plantilla",
+      "descripcion": "Procesamiento de los 87 partes diarios en la pestaña correspondiente por un monto de 150K soles.",
+      "referencia_visual": "Captura de Excel (Página 10)"
+    },
+    {
+      "hora": "19:01",
+      "actividad": "Corrección de metrado",
+      "descripcion": "Revisión y ajuste de las tablas de metrados.",
+      "referencia_visual": "Captura de Excel (Mesa Especial / Tramo 1)"
+    },
+    {
+      "hora": "19:23",
+      "actividad": "Procesamiento de guardas Tramo 2",
+      "descripcion": "Culminación del procesamiento de guardas correspondiente al Tramo 2.",
+      "referencia_visual": "Captura de Excel (Página 1)"
+    },
+    {
+      "hora": "19:24",
+      "actividad": "Procesamiento de guardas Tramo 1",
+      "descripcion": "Culminación del procesamiento de guardas correspondiente al Tramo 1.",
+      "referencia_visual": "Captura de Excel"
+    },
+    {
+      "hora": "19:47",
+      "actividad": "Procesamiento Tramo 3",
+      "descripcion": "Culminación del procesamiento del Tramo 3 referente a soportes, clips y guardas.",
+      "referencia_visual": "Captura de Excel (Página 1)"
+    },
+    {
+      "hora": "20:06",
+      "actividad": "Procesamiento de EMOS y capacitaciones",
+      "descripcion": "Culminación del registro y procesamiento de EMOS y capacitaciones.",
+      "referencia_visual": "Captura de Excel (Página 12)"
+    },
+    {
+      "hora": "20:54",
+      "actividad": "Procesamiento de materiales mecánicos y cierre de jornada",
+      "descripcion": "Procesamiento de materiales mecánicos por un valor aproximado de 190K soles, pendiente de verificación para el día siguiente. Confirmado por supervisión.",
+      "referencia_visual": "Captura de Excel y mensaje de confirmación"
+    }
+  ]
+}
